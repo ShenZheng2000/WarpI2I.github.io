@@ -1,0 +1,54 @@
+#video_grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#video_grid > .video_wrapper {
+    width: 33%;
+}
+
+#video_grid > .video_wrapper > .video_container {
+    display: grid;
+    position: relative;
+    overflow: hidden;
+}
+
+#video_grid > .video_wrapper > .video_container > video {
+    width: 100%;
+    height: auto;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+    padding: 0;
+    display: block; /* Ensures the video fills its container */
+    transition: transform 0.5s ease; /* Smooth transition for dimming */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none; /* Allows clicking 'through' the overlay */
+    font-family: 'Arial', sans-serif; /* Example font family */
+    font-size: 20px; /* Example font size */
+    text-align: center; /* Centers text horizontally */
+    padding: 10px; /* Adds padding to prevent text touching the edges */
+}
+
+.video_container:hover video {
+    filter: brightness(80%); /* Dim the video */
+}
+
+.video_container:hover .overlay {
+    opacity: 1; /* Show the overlay on hover */
+}

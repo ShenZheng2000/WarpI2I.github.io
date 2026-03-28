@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Saliency Guided Image Warping for Unsupervised Domain Adaptation.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WarpI2I: Image Warping for Image-to-Image Translation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.jpg">
+  <link rel="stylesheet" href="./static/css/video-grid.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+
+      <a class="navbar-item" href="https://imaging.cs.cmu.edu/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <span class="navbar-item" >
+        Instance-Warp
+      </span>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://shenzheng2000.github.io/tpsence.github.io/">
+            TPSeNCE
+          </a>
+          <a class="navbar-item" href="https://www.cs.cmu.edu/~roadwork/">
+            ROADWork Dataset
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">WarpI2I: Image Warping for Image-to-Image Translation</h1>
+          <!-- <h2 class="title is-size-5">Under Review</h2> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://shenzheng2000.github.io/">Shen Zheng</a></span>,
+            <span class="author-block">
+              <a href="https://anuragxel.github.io/">Anurag Ghosh</a></span>,
+            <span class="author-block">
+              <a href="https://gauravparmar.com/">Gaurav Parmar</a></span>,
+            <span class="author-block">
+              <a href="https://www.cs.cmu.edu/~srinivas/">Srinivasa Narasimhan</a></span>
+          </div>
+          <div class="is-size-6 publication-authors" style="margin-top: 0.5em;">
+          </div>
+          <!-- <div class="publication-links" style="margin-top: 1em;"> -->
+            <!-- <span class="link-block">
+              <a href="https://arxiv.org/abs/2403.12712" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                </span>
+                <span>arXiv</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/ShenZheng2000/Instance-Warp" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- <section class="hero is-small">
+<div class="hero-body">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <p style="text-shadow: #FC0 1px 0 10px; color: #e10000; font-weight: bolder;">
+        Our adapted detection results on in-the-wild driving videos taken in bad weather.
+      </p>
+    </div>
+  </div>
+</div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Techinical Contributions</h2>
+        <div class="content has-text-justified">
+<!--           
+          <p>
+            We oversample salient object regions by warping source-domain images in-place during training while performing domain adaptation. 
+          </p> -->
+
+          <!-- <b>Our approach improves adaptation across geographies, lighting and weather conditions, is agnostic to the task, domain adaptation algorithm, saliency guidance, and underlying model architecture.  Our approach adds minimal memory during training and incurs no additional latency at inference time.</b> -->
+          <!-- <p>
+            Technical Highlights include:
+          </p> -->
+
+          <div class="columns is-centered has-text-justified">
+            <ul>
+              <li>
+                Introduce <strong>saliency-guided image warping framework</strong> to enlarge salient regions to better preserve fine details under latent compression. 
+              </li>
+              <li>
+                Our approach is <strong>model-agnostic</strong>, requiring no architectural modification, and is compatible with existing latent I2I frameworks. 
+              </li>
+              <li>
+                Our approach is <strong>efficient</strong>, introducing negligible computational overhead without additional learnable parameters.
+              </li>
+              <li>
+                We further introduce a <strong>synthetic data generation pipeline</strong> to produce high-quality paired data for human and driving scene relighting.
+                </li>
+            </ul>
+          </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Background.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Image-to-image translation transforms an input image into another with modified appearance while preserving scene content. 
+                    In paired translation, we show human relighting from neutral light to moonlight, 
+                    where <strong>paired training yields better results but relied on hard-to-obtain real-world paired data</strong>.
+                    In unpaired translation, we show driving scene translation from night to day, 
+                    where <strong>unpaired training is typically more unstable and yields lower-quality results</strong>.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Challenge.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Existing low-capacity image-to-image translation models often struggle to preserve fine details, due to compressing high-resoluiton
+                    input images into a tiny, downsampled latent space. 
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Warp_UnWarp.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                   Our saliency-guided image warping framework enlarge salient regions via image warping to better preserve fine details 
+                   under extreme latent compression (e.g., 8x).
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+  
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/ECCV26_Supp_Teaser-1.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Without warping, the model struggles to maintain fine structures such as facial features. 
+                    By enlarging important regions before translation, warping helps the model generate more accurate and consistent results.
+
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Data_Pipeline.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    We design a synthetic data pipeline to generate training pairs for our model. 
+                    Starting from an original image, we first apply FLUX outpainting to create base and relit scenes. 
+                    We then estimate depth and perform depth-conditioned generation. 
+                    Finally, ChatGPT verifies the pair before adding it to the training set.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+  
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Data_Pipeline_Results.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Synthetic training pairs generated by our pipeline provide diverse and high-quality supervision for paired training.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Human_Relight_Moon.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Prior methods often distort facial and clothing identity or produce unrealistic lighting that does not match the prompt.
+                     In contrast, our method with warping preserves facial details and generates more realistic relighting results.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Human_Relight_Noon.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Compared with prior methods, our approach with warping better preserves facial details and produces more realistic lighting.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Driving_Relight_Golden.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Previous methods often change the shape or color of traffic arrows and hallucinate details in the sky and traffic signs. 
+                    In contrast, our method with warping preserves these structures and produces more realistic results.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Driving_Relight_Foggy.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Compared with prior methods, our approach with warping better preserves scene structures
+                     and produces more consistent fog effects.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <div class="content">
+                  <img src="./static/images/Driving_I2I.png"
+                       class="publication-image"
+                       alt="I2I examples" />
+                  <p>
+                    Compared with the no-warp baseline, our method with warping produces more realistic lighting
+                     and better preserves scene structures.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Source Code from <a href="https://nerfies.github.io">Nerfies</a> and <a href="https://humanoid-next-token-prediction.github.io/">Humanoid Next Token Prediction</a>.       
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
