@@ -132,11 +132,18 @@
 
 
 <!-- Videos Section -->
+<!-- Videos Section -->
 <section class="section">
   <div class="container is-max-desktop">
 
     <h2 class="title is-3 has-text-centered">Driving Scene Relighting</h2>
-    <p class="has-text-centered" style="margin-bottom: 1em;">Input | Ours (Golden Sunlight) | Ours (Foggy)</p>
+    <table width="100%" style="margin-bottom: 0.5em;">
+      <tr>
+        <td width="33%" align="center"><b>Input</b></td>
+        <td width="33%" align="center"><b>Golden Sunlight</b></td>
+        <td width="34%" align="center"><b>Foggy</b></td>
+      </tr>
+    </table>
     <div class="columns is-centered">
       <div class="column">
         <video class="autoplay-on-scroll" controls muted loop playsinline width="100%">
@@ -160,7 +167,12 @@
     </div>
 
     <h2 class="title is-3 has-text-centered" style="margin-top: 2em;">Driving Scene Weather Translation</h2>
-    <p class="has-text-centered" style="margin-bottom: 1em;">Input | Ours (Derained)</p>
+    <table width="100%" style="margin-bottom: 0.5em;">
+      <tr>
+        <td width="50%" align="center"><b>Input</b></td>
+        <td width="50%" align="center"><b>Derained</b></td>
+      </tr>
+    </table>
     <div class="columns is-centered">
       <div class="column">
         <video class="autoplay-on-scroll" controls muted loop playsinline width="100%">
@@ -178,6 +190,7 @@
 
   </div>
 </section>
+
 
 <script>
   const observer = new IntersectionObserver((entries) => {
