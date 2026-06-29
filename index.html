@@ -118,7 +118,7 @@
 
           <!-- TLDR -->
           <div class="content has-text-centered is-size-5" style="margin-top: 1.5em;">
-            <p><b>TL;DR:</b> Within 0.006 seconds, we warp the input image to enlarge salient regions (e.g., objects, faces, eyes)
+            <p><b>TL;DR:</b> Within⚡0.006 seconds, we warp the input image to enlarge salient regions (e.g., objects, faces, eyes)
               to better preserve fine details in the compressed latent space during image-to-image translation.
               </p>
           </div>
@@ -140,9 +140,9 @@
     <h2 class="title is-3 has-text-centered">Driving Scene Relighting</h2>
     <table width="100%" style="margin-bottom: 0.5em;">
       <tr>
-        <td width="33%" align="center"><b>Input</b></td>
-        <td width="33%" align="center"><b>Golden Sunlight</b></td>
-        <td width="34%" align="center"><b>Foggy</b></td>
+        <td width="33%" align="center">Input</td>
+        <td width="33%" align="center">Golden Sunlight</td>
+        <td width="34%" align="center">Foggy</td>
       </tr>
     </table>
     <div class="columns is-centered">
@@ -170,8 +170,8 @@
     <h2 class="title is-3 has-text-centered" style="margin-top: 2em;">Driving Scene Weather Translation</h2>
     <table width="100%" style="margin-bottom: 0.5em;">
       <tr>
-        <td width="50%" align="center"><b>Input</b></td>
-        <td width="50%" align="center"><b>Derained</b></td>
+        <td width="50%" align="center">Input</td>
+        <td width="50%" align="center">Derained</td>
       </tr>
     </table>
     <div class="columns is-centered">
@@ -319,8 +319,8 @@
                        alt="I2I examples" />
                   <p>
                    Our saliency-guided image warping framework enlarge salient regions via image warping 
-                   to better preserve fine details 
-                   under extreme latent compression (e.g., 8x).
+                   to better preserve fine details under extreme latent compression (e.g., 8x).
+                   In the figure above, original latents are shown in 🟥, and warped latents in 🟩.
                   </p>
               </div>
           </div>
@@ -400,7 +400,12 @@
   <div class="container is-max-desktop">
 
     <h2 class="title is-3 has-text-centered">Visual Comparison: Driving Scene Relighting (Golden Sunlight)</h2>
-    <p class="has-text-centered" style="margin-bottom: 1em;">Input | IC-Light | Ours</p>
+
+    <div class="columns is-centered">
+  <div class="column is-one-third has-text-centered">Input</div>
+  <div class="column is-one-third has-text-centered">IC-Light</div>
+  <div class="column is-one-third has-text-centered">Ours</div>
+</div>
 
     <div class="columns is-centered">
       <div class="column">
