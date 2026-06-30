@@ -118,8 +118,8 @@
 
           <!-- TLDR -->
           <div class="content has-text-centered is-size-5" style="margin-top: 1.5em;">
-            <p><b>TL;DR:</b> Within⚡0.006 seconds, we warp the input image to enlarge salient regions (e.g., objects, faces, eyes)
-              to better preserve fine details in the compressed latent space during image-to-image translation.
+            <p><b>TL;DR:</b> Within⚡0.006 seconds, we warp the input image to enlarge salient regions (e.g., objects, faces)
+              to better preserve fine details in the compressed latent during image-to-image translation.
               </p>
           </div>
 
@@ -182,6 +182,29 @@
   </div>
 </div>
 </section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+              <h2 class="title is-3">Warping Preserves Fine Details</h2>
+              <div class="content">
+                  <img src="./static/images/New_Teaser.png"
+                       class="publication-image"
+                       alt="Warp vs no-warp comparison" />
+                  <p>
+                   Our warping significantly improves fine details of face regions, 
+                   compared to the baseline img2img-turbo. Real human image is from VITON-HD dataset using moonlight (left)
+                   and foggy (right) as prompts for human relighting. 
+
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
 
 
 <section class="section">
@@ -320,7 +343,7 @@
                        alt="I2I examples" />
                   <p>
                     We design a synthetic data pipeline to generate training pairs for our model. 
-                    Starting from an original image, we first apply FLUX outpainting to create base and relit scenes. 
+                    Starting from the original image, we first apply FLUX outpainting to create base and relit scenes. 
                     We then estimate depth via Depth Anything and perform depth-conditioned generation. 
                     Finally, ChatGPT verifies the pair before adding it to the training set.
                   </p>
@@ -365,7 +388,7 @@
                        class="publication-image"
                        alt="I2I examples" />
                   <p>
-                    Previous methods often change the shape or color of traffic arrows and hallucinate details in the sky and traffic signs. 
+                    Previous methods like IC-Light and DreamLight often change the shape or color of traffic arrows and hallucinate details in the sky and traffic signs. 
                     In contrast, our method with warping preserves these structures and produces more realistic results.
                   </p>
               </div>
@@ -387,7 +410,7 @@
                        class="publication-image"
                        alt="I2I examples" />
                   <p>
-                    Compared with prior methods, our approach with warping better preserves scene structures
+                    Compared with others, our approach with warping better preserves scene structures
                      and produces more consistent fog effects.
                   </p>
               </div>
@@ -409,7 +432,7 @@
                        alt="I2I examples" />
                   <p>
                     Prior methods often distort facial and clothing identity or produce unrealistic lighting that does not match the prompt.
-                     In contrast, our method with warping preserves facial details and generates more realistic relighting results.
+                     In contrast, our method with warping preserves facial details and generates more realistic and faithful relighting results.
                   </p>
               </div>
           </div>
